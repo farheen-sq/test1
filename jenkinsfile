@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         TAG = "*"
-   }
+    }
     stages {
         stage('Test stage') {
             steps {
@@ -25,8 +25,7 @@ pipeline {
     post {
         success {
             script {
-                    build job: 'tag-based', parameters: [string(name: 'TAG_NAME', value: env.TAG)], propagate: false, wait: false
-                }
+                build job: 'tag-based', parameters: [string(name: 'TAG_NAME', value: env.TAG)], propagate: false, wait: false
             }
         }
     }
