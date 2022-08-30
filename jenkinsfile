@@ -10,7 +10,7 @@ pipeline {
             steps {
                 script {
                     TAG = sh (
-                        script: 'git log --tags=\'v[0-9]*.[0-9]*.[0-9]*\' --no-walk --pretty=\'format:%d\' | grep -m 1 -o \'v[0-9]*.[0-9]*.[0-9]*\'',
+                        script: 'git log --tags=\'v[0-9]*.[0-9]*.[0-9]*\' --no-walk --pretty=\'format:%d\' | grep -m 1 -o \'v[0-9]*.[0-9]*.[0-9]*\' | head -1',
                         returnStdout: true
                     ).trim()
                     echo TAG
