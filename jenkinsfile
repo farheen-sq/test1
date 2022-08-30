@@ -22,7 +22,9 @@ pipeline {
     post {
         success {
             script {
-                build job: 'tag-based', parameters: [string(name: 'TAG_NAME', value: TAG)], propagate: false, wait: false
+                if (TAG) {
+                    build job: 'tag-based', parameters: [string(name: 'TAG_NAME', value: TAG)], propagate: false, wait: false
+                }
             }
         }
     }
