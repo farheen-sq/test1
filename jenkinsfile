@@ -7,5 +7,12 @@ pipeline {
                 echo "Hello world"
             }
         }
+        stage('get git tag') {
+            steps {
+                String exit_code=sh(script: "PATTERN="v[0-9]*.[0-9]*.[0-9]*";TAG=$(git log --tags=$PATTERN --no-walk --pretty="format:%d" | grep -m 1 -o $PATTERN); echo $TAG", returnStatus: true)
+                echo exit_code
+            }
+        }
+
     }
 }
